@@ -13,18 +13,23 @@ public class MainKlasa {
 
 	public static void main(String[] args) {
 		
+			Scanner scanner = new Scanner(System.in);
 		
 		UpdateController controller = new UpdateController();
-		
-			Scanner scanner = new Scanner(System.in);
+			
+			
 		
 			System.out.println("Unesite id drzave: ");
 		String idDrzava = scanner.nextLine();
 		
 			System.out.println("Unesite naziv drzave: ");
 		String nazivDrzave = scanner.nextLine();
+		
 				
 			controller.proslediParametre(idDrzava, nazivDrzave);	
+				
+			
+				scanner.close();
 				
 				
 		

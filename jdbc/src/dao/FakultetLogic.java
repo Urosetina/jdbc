@@ -3,6 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import metode.CommonMethods;
@@ -13,6 +14,24 @@ public class FakultetLogic {
 	
 	
 
+	
+	private void closeResultSet(ResultSet rs) {
+		if(rs != null) {
+			
+			try {
+				rs.close();
+				System.out.println("ResultSet CLOSED!");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+				System.out.println("ResultSet unsuccesfully CLOSED!");
+		}
+		
+		
+	}
+	
+	
+	
 
 	private void closePreparedStatement (PreparedStatement ps) {
 		
@@ -235,6 +254,42 @@ public class FakultetLogic {
 				} 
 				
 			
+		}
+
+		@SuppressWarnings("finally")
+		public int vratiIdStudenta(String index) {
+			
+			int id = 0;
+			
+			Connection con = null;
+			PreparedStatement ps = null;
+			ResultSet rs = null;
+			
+				try {
+					con = CommonMethods.connect("fakultet2");
+						System.out.println("Connection OK");
+						
+					String query = "SELECT id FROM student WHERE broj_indexa = ?";
+					ps = con.prepareStatement(query);
+						ps.setInt(1, Integer.parseInt(index));
+					
+					rs = ps.executeQuery();
+						while(rs.next()) {
+							id = rs.getInt("id");
+						}
+					
+					
+				} catch (SQLException e) {
+					e.printStackTrace();
+					
+				} finally {
+					closeResultSet(rs);
+					closePreparedStatement(ps);
+					closeConnection(con);
+					
+				}
+				
+				return id;
 		}
 		
 		
