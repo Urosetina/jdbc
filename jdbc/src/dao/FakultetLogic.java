@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import metode.CommonMethods;
+import model.Drzava;
 import model.Student;
 
 public class FakultetLogic {
@@ -206,6 +207,33 @@ public class FakultetLogic {
 				
 			}
 			
+			
+		}
+
+		public void updateNazivDrzave(Drzava drzava) {
+			Connection con = null;
+			PreparedStatement ps = null;
+			
+				try {
+					con = CommonMethods.connect("fakultet2");
+						System.out.println("Connection OK!");
+					String query = "UPDATE drzava SET naziv = ? WHERE id = ?;";
+					ps = con.prepareStatement(query);
+						ps.setString(1, drzava.getNazivDrzave());
+						ps.setInt(2, drzava.getIdDrzave());
+							ps.executeUpdate();
+							
+							System.out.println("Ime drzave promenjeno na " + drzava.getNazivDrzave());
+					
+							
+					
+					
+				} catch (SQLException e) {
+						System.out.println("Connection FAILED");
+					e.printStackTrace();
+					
+				} 
+				
 			
 		}
 		

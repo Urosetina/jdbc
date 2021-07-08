@@ -7,30 +7,24 @@ import dao.FakultetLogic;
 import metode.CommonMethods;
 import model.Student;
 import service.Service;
+import java.util.Scanner;
 
 public class MainKlasa {
 
 	public static void main(String[] args) {
 		
-		Service service = new Service();
-			
 		
-		String ime = "Laki";
-		String prezime = "Lakic";
-		int index = 590;
-		int smer = 4;
-		int drzava = 6;
-		int ispiti = 3;
+		UpdateController controller = new UpdateController();
 		
-			String imeDrzave = "Numbani";
-			
-			
-				Student student = service.setStudent(ime, prezime, index, smer, drzava, ispiti);
-				service.posaljiPozdrav();
-				service.unesiStudenta(student);
-				service.unesiDrzavu(imeDrzave);
+			Scanner scanner = new Scanner(System.in);
+		
+			System.out.println("Unesite id drzave: ");
+		String idDrzava = scanner.nextLine();
+		
+			System.out.println("Unesite naziv drzave: ");
+		String nazivDrzave = scanner.nextLine();
 				
-				
+			controller.proslediParametre(idDrzava, nazivDrzave);	
 				
 				
 		
