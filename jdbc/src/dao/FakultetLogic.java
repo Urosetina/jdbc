@@ -15,7 +15,7 @@ public class FakultetLogic {
 	
 
 	
-	private void closeResultSet(ResultSet rs) {
+	protected void closeResultSet(ResultSet rs) {
 		if(rs != null) {
 			
 			try {
@@ -33,7 +33,7 @@ public class FakultetLogic {
 	
 	
 
-	private void closePreparedStatement (PreparedStatement ps) {
+	protected void closePreparedStatement (PreparedStatement ps) {
 		
 		if(ps != null) {
 			
@@ -50,7 +50,7 @@ public class FakultetLogic {
 		
 	}
 	
-	private void closeConnection (Connection con) {
+	protected void closeConnection (Connection con) {
 		
 		if(con != null) {
 			
